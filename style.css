@@ -11,20 +11,21 @@
     box-sizing: border-box;
 }
 
-html{
+html, body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     color: rgb(149, 140, 140);
     background-color: var(--cor-fundo);
-    height: 99dvh;
-    width: 99dvw;  
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden; /* Elimina qualquer scroll horizontal indesejado */
 }
 
 .navbar{
     font-weight: bold;
     display: flex;
     flex-direction: row;
-    width: 99dvw;
+    width: 100%;
     background-color: var(--cor-fundo);
 }
 
@@ -34,7 +35,7 @@ html{
     list-style-type: none;
     justify-content: center;
     align-items: center;
-    width: 99dvw;
+    width: 100%;
     height: 3rem;
     gap: 5px;
 }
@@ -58,11 +59,11 @@ li.page_button:hover{
 }
 
 #clientes{
-    width: 99dvw;
-    height: 99dvh;
-    gap: 5px;
+    width: 100%;
+    padding: 1rem 0;
 }
-/* Botão de abrir e fechar o menu mobile (aparece só no celular) */
+
+/* Botões de controle mobile */
 #open_side_bar, 
 #close_side_bar {
     display: none;
@@ -81,33 +82,24 @@ li.page_button:hover{
     display: none;
 }
 
-#overlay{
-    background-color: rgba(0, 0, 0, 0.2);
-    position: fixed;
-    inset: 0;
-    z-index: 9;
-    display: none;
-}
-
 /* ==========================================
-   LAYOUT PADRÃO (MOBILE FIRST - Telemóveis)
+   LAYOUT PADRÃO (MOBILE FIRST)
    ========================================== */
 .secao_clientes{
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     gap: 1.5rem;
     padding: 0.5rem;
 }
 
 .adicionar_clientes, .pastas_clientes{
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
+    width: 100%;
+    height: auto;
 }
 
 .adicionar_clientes{
-    margin-top: 2rem;
+    margin-top: 1rem;
     background-color: var(--cor-cards);
     padding: 2rem 1rem;
     display: flex;
@@ -116,7 +108,6 @@ li.page_button:hover{
     align-items: center;
 }
 
-/* Formulário fluido em 1 coluna para telemóveis */
 .adicionar_clientes form{
     display: grid;
     width: 100%;
@@ -283,22 +274,19 @@ li.page_button:hover{
    MEDIA QUERY: CELULARES (Abaixo de 800px)
    ========================================== */
 @media screen and (width < 800px) {
-    /* Mostra o botão de abrir o menu */
     #open_side_bar {
         display: block;
         margin-left: auto;
     }
 
-    /* Mostra o botão de fechar dentro do menu */
     #close_side_bar {
         display: block;
     }
 
-    /* Transforma a navbar em uma gaveta lateral (Sidebar) */
     .navbar {
         position: fixed;
         top: 0;
-        right: -100%; /* Escondida fora da tela */
+        right: -100%;
         height: 100vh;
         width: min(16rem, 80%);
         background-color: var(--cor-cards);
@@ -310,12 +298,10 @@ li.page_button:hover{
         padding: 1rem;
     }
 
-    /* Quando o JS ativa a classe .show, a sidebar desliza para dentro */
     .navbar.show {
         right: 0;
     }
 
-    /* Organiza os botões do menu em coluna */
     .nav_list {
         flex-direction: column;
         width: 100%;
@@ -333,7 +319,6 @@ li.page_button:hover{
         margin-right: 0 !important;
     }
 
-    /* Ativa o fundo escuro quando a sidebar abre */
     .navbar.show ~ #overlay {
         display: block;
     }
@@ -346,49 +331,59 @@ li.page_button:hover{
     .secao_clientes {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr;
         grid-template-areas: "box-1 box-2";
-        width: 100vw;
-        gap: 1rem;
-        padding: 0;
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+        gap: 2rem;
+        padding: 2rem;
     }
     
-    .adicionar_clientes {
-        width: 49dvw !important;
-        height: 40rem !important;
-        padding-top: 3rem;
+    .adicionar_clientes, 
+    .pastas_clientes {
+        width: 100% !important;
+        height: 42rem !important;
+        margin-top: 0 !important;
+        display: flex;
+        flex-direction: column;
     }
 
     .adicionar_clientes form {
-        grid-template-columns: 15rem 15rem;
-        grid-template-rows: repeat(4, 5rem);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-template-areas: 
         "box-01  box-02"
         "box-03  box-04"
         "box-05 box-05"
         "box-06 box-06";
-        margin-left: 0.5rem;
-        width: auto;
+        gap: 1rem;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .botao_add_container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .botao_add_cliente {
         align-self: flex-end;
+        margin-top: auto;
         margin-right: 1rem;
-        width: 6rem;
-        padding: 1.5rem;
+        width: 8rem;
+        padding: 1rem;
     }
 
     .pastas_clientes {
-        width: 49dvw !important;
-        height: 40rem !important;
         overflow-y: auto; 
     }
 
     .pasta {
-        width: 100%;
+        width: 95%;
+        margin: 0 auto 0.5rem auto;
     }
 
-    /* Garante que os botões mobile fiquem ocultos no PC */
     #open_side_bar, 
     #close_side_bar,
     #overlay {
