@@ -1,0 +1,397 @@
+:root{
+    --cor-fundo: #120A0A;
+    --cor-cards: #261414;
+    --cor-destaque: #C72C41;
+    --cor-texto: #E8D7C1;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: rgb(149, 140, 140);
+    background-color: var(--cor-fundo);
+    height: 99dvh;
+    width: 99dvw;  
+}
+
+.navbar{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    width: 99dvw;
+    background-color: var(--cor-fundo);
+}
+
+.nav_list{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    width: 99dvw;
+    height: 3rem;
+    gap: 5px;
+}
+
+li.page_button{
+    display: block;
+    transition: all 0.4s ease;    
+    background-color: var(--cor-fundo);
+    padding: 1rem;
+    height: 3rem;
+    cursor: pointer;
+}
+
+li.page_button:hover{
+    transform: translateY(-0.5rem) scale(1.10);
+    background-color: transparent;
+}
+
+#nav_clientes{
+    margin-right: auto !important;
+}
+
+#clientes{
+    width: 99dvw;
+    height: 99dvh;
+    gap: 5px;
+}
+/* Botão de abrir e fechar o menu mobile (aparece só no celular) */
+#open_side_bar, 
+#close_side_bar {
+    display: none;
+    background: none;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    color: var(--cor-texto);
+}
+
+#overlay{
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+    display: none;
+}
+
+#overlay{
+    background-color: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+    display: none;
+}
+
+/* ==========================================
+   LAYOUT PADRÃO (MOBILE FIRST - Telemóveis)
+   ========================================== */
+.secao_clientes{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    gap: 1.5rem;
+    padding: 0.5rem;
+}
+
+.adicionar_clientes, .pastas_clientes{
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+.adicionar_clientes{
+    margin-top: 2rem;
+    background-color: var(--cor-cards);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    align-items: center;
+}
+
+/* Formulário fluido em 1 coluna para telemóveis */
+.adicionar_clientes form{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "box-01"
+    "box-02"
+    "box-03"
+    "box-04"
+    "box-05"
+    "box-06";
+    padding: 1rem;
+    gap: 0.75rem;
+    justify-items: center;
+}
+
+.adicionar_clientes h2{
+    align-self: center;
+    margin-bottom: 1rem;
+}
+
+.adicionar_clientes label{
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.grid_clientes{
+    width: 100%;
+}
+
+.botao_add_cliente{
+    align-self: center;
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    background-color: var(--cor-destaque);
+    transition: all 0.2s linear;
+    width: auto;
+    min-width: 10rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    color: var(--cor-texto);
+    font-weight: bold;
+}
+
+.botao_add_cliente:hover{
+    transform: scale(1.05) translateY(-2px);
+}
+
+.input_clientes{
+    color: var(--cor-texto);
+    text-align: center;
+    border-radius: 1rem;
+    width: 100%;
+    height: 2.5rem;
+    background-color: #1a0f0f;
+    border: none;
+}
+
+.input_clientes:focus{
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 8px rgba(199, 44, 65, 0.35);
+    outline: none;
+}
+
+#observacoes{
+    height: 5rem;
+    resize: none;
+}
+
+/* Pastas */
+.pastas_clientes{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    overflow-y: auto;
+    background-color: var(--cor-cards);
+    border-radius: 1rem;
+    padding-bottom: 2rem;
+}
+
+.pastas_clientes h2{
+    margin-top: 2rem;
+    text-align: center !important;
+    margin-bottom: 0.5rem;
+}
+
+.pasta{
+    width: 95%;
+    background-color: var(--cor-cards);
+    align-items: center;
+    height: 6.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: height 0.3s linear;
+    border: 5px solid var(--cor-destaque);
+    cursor: pointer;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.pasta.aberta{
+    height: auto;
+    max-height: 30rem;
+}
+
+.pasta h1{
+    margin: 0 !important;
+    font-size: 1.4rem;
+}
+
+.pasta .pasta_interna{
+    display: none;
+    width: 100%;
+    padding: 1rem;
+}
+
+.pasta.aberta .pasta_interna{
+    color: var(--cor-texto) !important;
+    text-align: start !important;
+    height: auto;
+    line-height: 2rem;
+    background-color: #1a0f0f;
+    display: block !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
+    box-shadow: inset 1px 1px 3px hsl(0, 90%, 11%);
+}
+
+.pasta_cabecalho{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+}
+
+.botao_deletar{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.botao_deletar span.material-symbols-outlined{
+    font-size: 32px;
+    color: var(--cor-texto);
+    transition: transform 0.3s ease, color 0.4s ease;
+}
+
+.botao_deletar span.material-symbols-outlined:hover{
+    transform: scale(1.2);
+    color: var(--cor-destaque);
+}
+
+/* ==========================================
+   MEDIA QUERY: CELULARES (Abaixo de 800px)
+   ========================================== */
+@media screen and (width < 800px) {
+    /* Mostra o botão de abrir o menu */
+    #open_side_bar {
+        display: block;
+        margin-left: auto;
+    }
+
+    /* Mostra o botão de fechar dentro do menu */
+    #close_side_bar {
+        display: block;
+    }
+
+    /* Transforma a navbar em uma gaveta lateral (Sidebar) */
+    .navbar {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Escondida fora da tela */
+        height: 100vh;
+        width: min(16rem, 80%);
+        background-color: var(--cor-cards);
+        z-index: 10;
+        flex-direction: column;
+        border-left: 3px solid var(--cor-destaque);
+        transition: right 0.3s ease-in-out;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.7);
+        padding: 1rem;
+    }
+
+    /* Quando o JS ativa a classe .show, a sidebar desliza para dentro */
+    .navbar.show {
+        right: 0;
+    }
+
+    /* Organiza os botões do menu em coluna */
+    .nav_list {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        gap: 0.5rem;
+    }
+
+    li.page_button {
+        width: 100%;
+        height: auto;
+        padding: 0.75rem;
+    }
+
+    #nav_clientes {
+        margin-right: 0 !important;
+    }
+
+    /* Ativa o fundo escuro quando a sidebar abre */
+    .navbar.show ~ #overlay {
+        display: block;
+    }
+}
+
+/* ==========================================
+   MEDIA QUERY: COMPUTADORES (A partir de 800px)
+   ========================================== */
+@media screen and (width >= 800px) {
+    .secao_clientes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "box-1 box-2";
+        width: 100vw;
+        gap: 1rem;
+        padding: 0;
+    }
+    
+    .adicionar_clientes {
+        width: 49dvw !important;
+        height: 40rem !important;
+        padding-top: 3rem;
+    }
+
+    .adicionar_clientes form {
+        grid-template-columns: 15rem 15rem;
+        grid-template-rows: repeat(4, 5rem);
+        grid-template-areas: 
+        "box-01  box-02"
+        "box-03  box-04"
+        "box-05 box-05"
+        "box-06 box-06";
+        margin-left: 0.5rem;
+        width: auto;
+    }
+
+    .botao_add_cliente {
+        align-self: flex-end;
+        margin-right: 1rem;
+        width: 6rem;
+        padding: 1.5rem;
+    }
+
+    .pastas_clientes {
+        width: 49dvw !important;
+        height: 40rem !important;
+        overflow-y: auto; 
+    }
+
+    .pasta {
+        width: 100%;
+    }
+
+    /* Garante que os botões mobile fiquem ocultos no PC */
+    #open_side_bar, 
+    #close_side_bar,
+    #overlay {
+        display: none !important;
+    }
+}

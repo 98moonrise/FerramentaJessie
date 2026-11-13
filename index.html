@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="style.css">
+       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    </head>
+    
+        <header>
+            <button id="open_side_bar" onclick="openSideBar()" aria-label="open sidebar" aria-expanded="false" aria-controls="navbar">
+   <span class="material-symbols-outlined">home</span>
+</button>
+            <nav class="navbar" id="navbar">
+                <ul class="nav_list">
+            
+             <li><button id="close_side_bar" onclick="closeSideBar()" aria-label="close sidebar"><span class="material-symbols-outlined">close</span></button></li>
+                    <li class="page_button" id="nav_clientes">Clientes</li>
+                    <li class="page_button" id="em_falta">Em falta</li>
+                    <li class="page_button" id="em_producao">Em produção</li>
+                    <li class="page_button" id="comprados_por_clientes">Portfolio de Clientes</li>
+                    <li class="page_button" id="portfolio">Portfolio da Loja</li>
+                </ul>
+            </nav>
+            <div id="overlay" onclick="closeSideBar()" aria-hidden="true"></div>
+            <body>
+                <main>
+            <section id="clientes">
+                <div class="secao_clientes">
+                    <div class="adicionar_clientes" style="grid-area: box-1;">
+                        <h2>Adicionar cliente</h2>
+                        <form >
+                            <div class="grid_clientes" style="grid-area: box-01;">
+                        <label for="nome_cliente">Nome/Cliente</label>
+                        <input type="text" id="nome_cliente" class="input_clientes">
+                          </div>
+                          <div class="grid_clientes" style="grid-area: box-02;">
+                        <label for="telefone_cliente">Telefone/contato</label>
+                        <input type="number" id="telefone_cliente" class="input_clientes" > 
+                        </div>
+                        <div class="grid_clientes" style="grid-area: box-03;">
+                        <label for="valor_entrada">Cliente pagou de entrada</label> 
+                        <input type="number" id="valor_entrada" class="input_clientes" >
+                        </div>
+                        <div class="grid_clientes" style="grid-area: box-04;">
+                        <label for="valor_final">Valor final da peça</label>
+                        <input type="number" id="valor_final" class="input_clientes" >
+                        </div>
+                        <div class="grid_clientes" style="grid-area: box-05;"">
+                        <label for="peca_produzida">Peça produzida</label>
+                        <input type="text" id="peca_produzida" class="input_clientes" >
+                        </div>
+                        <div class="grid_clientes" style="grid-area: box-06;">
+                        <label for="observacoes">Observações</label>
+                        <textarea type="text" id="observacoes" class="input_clientes"></textarea>
+                        </div>
+                        </form>
+                        <button id="botao_add_cliente" class="botao_add_cliente">
+                            Adicionar Cliente
+
+                        </button>            
+                        
+                                            
+                    </div>
+                    <div class="pastas_clientes" id="pastas_clientes" style="grid-area: box-2;">
+                            <h2>
+                                Pastas de Clientes
+                            </h2>
+                            
+                    </div>
+                </div>
+            </section>
+            </main>
+            <script src="script.js"></script>
+    </body>
+    
+    </html>
